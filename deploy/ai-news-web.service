@@ -1,0 +1,19 @@
+[Unit]
+Description=Newsletter Digest web app
+After=network.target
+
+[Service]
+User=digest
+Group=digest
+ExecStart=/usr/bin/python3 -I /opt/newsletter-digest/bin/server.py
+Restart=on-failure
+NoNewPrivileges=true
+ProtectSystem=strict
+ProtectHome=true
+PrivateTmp=true
+ReadOnlyPaths=/opt/newsletter-digest
+ReadWritePaths=/opt/newsletter-digest/data
+InaccessiblePaths=/opt/newsletter-digest/secrets
+
+[Install]
+WantedBy=multi-user.target

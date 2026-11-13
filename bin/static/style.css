@@ -1,0 +1,103 @@
+@font-face{font-family:"Instrument Serif";font-style:normal;font-weight:400;font-display:swap;src:url(fonts/instrument-serif.woff2) format("woff2")}
+@font-face{font-family:"Instrument Serif";font-style:italic;font-weight:400;font-display:swap;src:url(fonts/instrument-serif-italic.woff2) format("woff2")}
+@font-face{font-family:"Instrument Sans";font-style:normal;font-weight:400 700;font-display:swap;src:url(fonts/instrument-sans.woff2) format("woff2")}
+@font-face{font-family:"JetBrains Mono";font-style:normal;font-weight:400 500;font-display:swap;src:url(fonts/jetbrains-mono.woff2) format("woff2")}
+
+:root{
+  --bg:#F4F2EC;--ink:#16201C;--muted:#66726B;--line:rgba(22,32,28,.14);--line-strong:rgba(22,32,28,.32);
+  --accent:#2F5D50;--card:#FBFAF6;--card-shadow:0 1px 0 rgba(22,32,28,.04),0 14px 30px -22px rgba(22,32,28,.35);
+  --body:#37433D;--chip-on-fg:#F4F2EC;--bar:rgba(244,242,236,.92);--tab-hover:rgba(22,32,28,.05);--tab-on:rgba(22,32,28,.07);
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme=light]){
+    --bg:#0B1210;--ink:#F1EEE6;--muted:#8E9A94;--line:rgba(241,238,230,.13);--line-strong:rgba(241,238,230,.3);
+    --accent:#8FD3B6;--card:#111B18;--card-shadow:0 1px 0 rgba(241,238,230,.03),0 16px 34px -24px rgba(0,0,0,.8);
+    --body:#C9CFC9;--chip-on-fg:#0B1210;--bar:rgba(11,18,16,.92);--tab-hover:rgba(241,238,230,.06);--tab-on:rgba(241,238,230,.08);
+  }
+}
+:root[data-theme=dark]{
+  --bg:#0B1210;--ink:#F1EEE6;--muted:#8E9A94;--line:rgba(241,238,230,.13);--line-strong:rgba(241,238,230,.3);
+  --accent:#8FD3B6;--card:#111B18;--card-shadow:0 1px 0 rgba(241,238,230,.03),0 16px 34px -24px rgba(0,0,0,.8);
+  --body:#C9CFC9;--chip-on-fg:#0B1210;--bar:rgba(11,18,16,.92);--tab-hover:rgba(241,238,230,.06);--tab-on:rgba(241,238,230,.08);
+}
+
+*{box-sizing:border-box}
+html{color-scheme:light dark}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:"Instrument Sans",system-ui,sans-serif}
+button{font:inherit;color:inherit}
+a{color:var(--accent)}
+:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.muted{color:var(--muted)}
+
+.wrap{max-width:960px;margin:0 auto;padding:0 clamp(16px,3vw,40px)}
+header{display:flex;align-items:flex-end;justify-content:space-between;gap:14px 32px;padding:clamp(22px,3.4vw,44px) 0 22px}
+.brand{display:flex;align-items:baseline;gap:16px;flex-wrap:wrap}
+h1{margin:0;font:400 clamp(46px,6vw,84px)/.9 "Instrument Serif",serif;letter-spacing:-.02em}
+h1 em{font-style:italic;color:var(--accent)}
+.tag{margin:0;font:500 11px/1.6 "JetBrains Mono",monospace;text-transform:uppercase;letter-spacing:.1em;color:var(--muted)}
+.linkbtn{border:0;background:none;padding:0;cursor:pointer;color:var(--accent);font:500 11px/1 "JetBrains Mono",monospace;text-transform:uppercase;letter-spacing:.1em;text-decoration:underline;text-underline-offset:4px}
+#banner{margin:0 0 18px;padding:10px 14px;border:1px solid var(--line-strong);border-radius:6px;font:500 12px/1.5 "JetBrains Mono",monospace}
+
+/* history strip */
+.daybar{position:sticky;top:0;z-index:5;background:var(--bar);-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+#days{display:flex;gap:4px;overflow-x:auto;scrollbar-width:none;padding:0}
+#days::-webkit-scrollbar{display:none}
+.day{flex:0 0 auto;display:flex;align-items:baseline;gap:9px;padding:11px 16px 12px;border:0;border-bottom:2px solid transparent;background:transparent;color:var(--muted);cursor:pointer;white-space:nowrap}
+.day:hover{background:var(--tab-hover)}
+.day[aria-pressed=true]{border-bottom-color:var(--accent);background:var(--tab-on);color:var(--ink)}
+.day .dow{font:500 10px/1 "JetBrains Mono",monospace;letter-spacing:.1em;text-transform:uppercase}
+.day .dom{font:400 26px/1 "Instrument Serif",serif}
+.day .cnt{font:400 11px/1 "JetBrains Mono",monospace;opacity:.75}
+
+.dayhead{display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;gap:14px 24px;padding:30px 0 20px}
+h2{margin:0;font:400 clamp(30px,3.6vw,44px)/1 "Instrument Serif",serif;letter-spacing:-.01em}
+#daymeta{margin:8px 0 0;font:500 11px/1.4 "JetBrains Mono",monospace;text-transform:uppercase;letter-spacing:.1em}
+.tools{display:flex;flex-direction:column;align-items:flex-end;gap:12px}
+.filters{display:flex;flex-wrap:wrap;gap:6px}
+.chip{display:flex;align-items:center;gap:8px;padding:8px 12px;border:1px solid var(--line-strong);background:transparent;color:var(--ink);border-radius:999px;cursor:pointer;font:500 11px/1 "JetBrains Mono",monospace;letter-spacing:.06em;text-transform:uppercase}
+.chip:hover{border-color:var(--ink)}
+.chip[aria-pressed=true]{background:var(--ink);color:var(--chip-on-fg);border-color:var(--ink)}
+.chip b{font-weight:500;opacity:.7}
+
+/* cards: headline row first, summary expands */
+#cards{display:flex;flex-direction:column;gap:10px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:14px;box-shadow:var(--card-shadow);animation:rise .38s cubic-bezier(.2,.7,.2,1) both;animation-delay:calc(var(--i,0) * 22ms);transition:border-color .2s}
+.card:hover,.card.open{border-color:var(--line-strong)}
+.card h3{margin:0;font:inherit}
+.card .toggle{width:100%;display:grid;grid-template-columns:34px minmax(0,1fr) auto 22px;grid-template-areas:"num title chips chev";align-items:center;column-gap:12px;padding:clamp(14px,1.8vw,20px) clamp(14px,2vw,22px);border:0;background:none;text-align:left;cursor:pointer;border-radius:14px}
+.num{grid-area:num;font:500 11px/1 "JetBrains Mono",monospace;letter-spacing:.08em;color:var(--accent)}
+.title{grid-area:title;font:400 clamp(22px,2.1vw,28px)/1.14 "Instrument Serif",serif;letter-spacing:-.005em;text-wrap:balance}
+.srcs{grid-area:chips;display:flex;flex-wrap:wrap;gap:6px;justify-content:flex-end}
+.tag2{font:500 10px/1 "JetBrains Mono",monospace;text-transform:uppercase;letter-spacing:.1em;padding:6px 8px;border:1px solid var(--line-strong);border-radius:3px;color:var(--muted);white-space:nowrap}
+.chev{grid-area:chev;justify-self:end;width:9px;height:9px;border-right:2px solid var(--muted);border-bottom:2px solid var(--muted);transform:rotate(45deg) translateY(-2px);transition:transform .22s}
+.card.open .chev{transform:rotate(-135deg) translateY(-2px)}
+.panel{display:grid;grid-template-rows:0fr;transition:grid-template-rows .26s ease}
+.card.open .panel{grid-template-rows:1fr}
+.panel>div{overflow:hidden;min-height:0}
+.cbody{display:flex;flex-direction:column;gap:12px;padding:0 clamp(14px,2vw,22px) 4px calc(clamp(14px,2vw,22px) + 46px);max-width:calc(72ch + 46px + 44px)}
+.cbody p{margin:0;font:400 16.5px/1.62 "Instrument Sans",sans-serif;color:var(--body);text-wrap:pretty}
+.go{display:inline-flex;margin:12px 0 clamp(16px,2vw,22px) calc(clamp(14px,2vw,22px) + 46px);font:600 14px/1 "Instrument Sans",sans-serif;text-decoration:none;border-bottom:1px solid transparent}
+.go:hover{border-bottom-color:var(--accent)}
+.card:not(.open) .go{visibility:hidden}
+.card:not(.open) .panel>div{visibility:hidden}
+#empty{margin:0;padding:48px 0;font:italic 400 28px/1.2 "Instrument Serif",serif;color:var(--muted);text-align:center}
+.hint{margin:36px 0 0;padding-bottom:56px;font:400 10px/1.5 "JetBrains Mono",monospace;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);text-align:center}
+@keyframes rise{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+
+@media (max-width:900px){
+  header{flex-direction:column;align-items:center;justify-content:center;text-align:center;gap:14px}
+  .brand{flex-direction:column;align-items:center;gap:10px}
+  .tag{text-align:center}
+  .dayhead{flex-direction:column;align-items:center;text-align:center}
+  .tools{align-items:center}
+  .filters{justify-content:center}
+}
+@media (max-width:640px){
+  .card .toggle{grid-template-columns:26px minmax(0,1fr) 22px;grid-template-areas:"num title chev" ". chips chips";row-gap:10px;align-items:start}
+  .srcs{justify-content:flex-start}
+  .chev{margin-top:8px}
+  .cbody{padding-left:clamp(14px,2vw,22px);padding-right:clamp(14px,2vw,22px)}
+  .go{margin-left:clamp(14px,2vw,22px)}
+}
+@media (max-width:520px){.card,.card .toggle{border-radius:12px}.cbody p{font-size:16px}}
+@media (prefers-reduced-motion:reduce){.card{animation:none}.panel,.chev{transition:none}}

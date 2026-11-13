@@ -1,0 +1,11 @@
+[Unit]
+Description=Newsletter Digest at 12:00 and 15:00 Chicago time
+
+[Timer]
+OnCalendar=*-*-* 12:00:00 America/Chicago
+OnCalendar=*-*-* 15:00:00 America/Chicago
+Persistent=true
+RandomizedDelaySec=0
+
+[Install]
+WantedBy=timers.target

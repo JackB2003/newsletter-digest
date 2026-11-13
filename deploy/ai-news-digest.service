@@ -1,0 +1,15 @@
+[Unit]
+Description=Newsletter Digest: pull newsletters and build the digest
+After=network-online.target
+
+[Service]
+Type=oneshot
+User=digest
+Group=digest
+ExecStart=/usr/bin/python3 -I /opt/newsletter-digest/bin/digest.py run
+TimeoutStartSec=1500
+NoNewPrivileges=true
+ProtectSystem=strict
+ProtectHome=true
+PrivateTmp=true
+ReadWritePaths=/opt/newsletter-digest/data /var/lib/newsletter-digest

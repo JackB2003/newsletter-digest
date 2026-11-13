@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<meta name="color-scheme" content="light dark">
+<title>Newsletter Digest</title>
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="icon" href="favicon-32.png" sizes="32x32" type="image/png">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<link rel="preload" href="fonts/instrument-serif.woff2" as="font" type="font/woff2" crossorigin>
+<script src="theme.js"></script>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <div class="brand">
+      <h1>AI <em>News</em></h1>
+      <p class="tag">Two newsletters, one place.</p>
+    </div>
+    <button id="theme" type="button" class="linkbtn"></button>
+  </header>
+  <div id="banner" hidden></div>
+</div>
+<div class="daybar">
+  <div class="wrap"><nav id="days" aria-label="Choose a day"></nav></div>
+</div>
+<div class="wrap">
+  <div class="dayhead" id="dayhead">
+    <div>
+      <h2 id="dayname"></h2>
+      <p id="daymeta" class="muted"></p>
+    </div>
+    <div class="tools">
+      <div class="filters" id="filters" role="group" aria-label="Filter by newsletter"></div>
+      <button id="all" type="button" class="linkbtn" hidden>Expand all</button>
+    </div>
+  </div>
+  <section id="cards" aria-live="polite"></section>
+  <p id="empty" hidden></p>
+  <p class="hint">Tap a headline to open it &middot; &larr; &rarr; change day</p>
+</div>
+<script src="app.js"></script>
+</body>
+</html>

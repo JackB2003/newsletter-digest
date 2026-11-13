@@ -1,0 +1,6 @@
+secrets/
+data/
+bin/claude
+__pycache__/
+.env
+*.db
